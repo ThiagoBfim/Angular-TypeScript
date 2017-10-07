@@ -6,7 +6,6 @@ import { PrimeFacesModuleModule } from './../prime-faces-module/prime-faces-modu
 
 import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { SharedModule } from './../shared/shared.module';
 
 
@@ -19,13 +18,11 @@ import { SharedModule } from './../shared/shared.module';
   ],
   declarations: [
     PessoasCadastroComponent,
-    PessoasPesquisaComponent,
-    PessoasGridComponent
+    PessoasPesquisaComponent
   ],
   exports: [
     PessoasCadastroComponent,
-    PessoasPesquisaComponent,
-    PessoasGridComponent
+    PessoasPesquisaComponent
   ]
 })
 export class PessoasModule { }

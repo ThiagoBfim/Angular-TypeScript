@@ -1,22 +1,45 @@
 <div class="container">
   <div class="ui-g">
 
-    <div class="ui-g-12">
-      <h1>Pessoas</h1>
-    </div>
+    <form autocomplete="false" (ngSubmit)="pesquisar()">
+      <div class="ui-g-12">
+        <h1>Pessoas</h1>
+      </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
-      <input type="text" pInputText>
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome">
+      </div>
 
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
   </div>
 
   <div class="ui-g">
-    <app-pessoas-grid  [pessoas]="pessoas"></app-pessoas-grid>
+    <div class="ui-g-12">
+      <p-dataTable [value]="pessoas" [rows]="filtro.itensPorPagina" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
+        [responsive]="true" emptyMessage="Nenhuma Pessoa encontrada" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="cidade" header="Cidade"></p-column>
+        <p-column field="estado" styleClass="col-estado" header="Estado"></p-column>
+        <p-column field="ativo" styleClass="col-status" header="Status">
+          <ng-template let-pessoa="rowData" pTemplate="body">
+            <a href="javascript:;" class="remover-decoretor" [pTooltip]="pessoa.ativo ? 'Inativar' : 'Ativar'" tooltipPosition="top">
+                 {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
+              </a>
+          </ng-template>
+
+        </p-column>
+        <p-column styleClass="col-acoes">
+          <ng-template pTemplate="body">
+            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
 
     <div class="ui-g-12">
       <a pButton label="Nova Pessoa"></a>
