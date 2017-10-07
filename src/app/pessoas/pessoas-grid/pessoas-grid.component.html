@@ -1,0 +1,22 @@
+<div class="ui-g-12">
+    <p-dataTable [value]="pessoas" [rows]="5" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+      <p-column field="nome" header="Nome"></p-column>
+      <p-column field="cidade" header="Cidade"></p-column>
+      <p-column field="estado" styleClass="col-estado" header="Estado"></p-column>
+      <p-column field="ativo" styleClass="col-status" header="Status">
+        <ng-template let-pessoa="rowData" pTemplate="body">
+          <a href="javascript:;" class="remover-decoretor"
+           [pTooltip]="pessoa.ativo ? 'Inativar' : 'Ativar'" tooltipPosition="top">
+           {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
+        </a>
+        </ng-template>
+
+      </p-column>
+      <p-column styleClass="col-acoes">
+        <ng-template pTemplate="body">
+          <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+          <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>

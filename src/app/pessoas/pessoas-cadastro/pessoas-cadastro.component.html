@@ -1,0 +1,61 @@
+<div class="container">
+  <form #f="ngForm">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Nova Pessoa</h1>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText
+        name="nome" ngModel #nome="ngModel" required minlength="5">
+        <app-message-minlength [control]="nome"></app-message-minlength>
+        <app-message-required [control]="nome" preposicao="o"></app-message-required>
+      </div>
+      <div class="ui-g-8 ui-fluid">
+        <label>Logradouro</label>
+        <input type="text" pInputText
+        name="logradouro" ngModel #logradouro="ngModel" required >
+        <app-message-required [control]="logradouro" preposicao="o"></app-message-required>
+      </div>
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Número</label>
+        <input type="text" pInputText
+          name="número" ngModel #numero="ngModel" required >
+        <app-message-required [control]="numero" preposicao="o"></app-message-required>
+      </div>
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Complemento</label>
+        <input type="text" pInputText>
+      </div>
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Bairro</label>
+        <input type="text" pInputText
+        name="bairro" ngModel #bairro="ngModel" required>
+        <app-message-required [control]="bairro" preposicao="o"></app-message-required>
+      </div>
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>CEP</label>
+        <p-inputMask mask="99999-999" type="text" 
+        name="CEP" ngModel #cep="ngModel" required ></p-inputMask>
+        <app-message-required [control]="cep" preposicao="o"></app-message-required>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Cidade</label>
+        <input type="text" pInputText
+        name="cidade" ngModel #cidade="ngModel" required>
+        <app-message-required [control]="cidade" preposicao="a"></app-message-required>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Estado</label>
+        <input type="text" pInputText
+        name="estado" ngModel #estado="ngModel" required>
+        <app-message-required [control]="estado" preposicao="o"></app-message-required>
+      </div>
+      <div class="ui-g-12 ">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton label="Novo" class="ui-button-info"></button>
+        <a href="#">Voltar para a pesquisa</a>
+      </div>
+    </div>
+  </form>
+</div>
