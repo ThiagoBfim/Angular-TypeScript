@@ -7,6 +7,7 @@ import { PrimeFacesModuleModule } from './../prime-faces-module/prime-faces-modu
 import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { SharedModule } from './../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SharedModule } from './../shared/shared.module';
     CommonModule,
     FormsModule,
     PrimeFacesModuleModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     PessoasCadastroComponent,

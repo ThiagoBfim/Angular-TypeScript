@@ -9,6 +9,7 @@ import { SharedModule } from './../shared/shared.module';
 import { PrimeFacesModuleModule } from './../prime-faces-module/prime-faces-module.module';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     FormsModule,
     PrimeFacesModuleModule,
     CurrencyMaskModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     LancamentoCadastroComponent,
