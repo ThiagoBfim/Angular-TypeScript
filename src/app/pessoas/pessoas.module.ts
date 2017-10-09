@@ -6,8 +6,8 @@ import { PrimeFacesModuleModule } from './../prime-faces-module/prime-faces-modu
 
 import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { PessoasRoutingModule } from './pessoas-routing-module';
 import { SharedModule } from './../shared/shared.module';
-import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -16,15 +16,12 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     PrimeFacesModuleModule,
     SharedModule,
-    RouterModule
+    PessoasRoutingModule
   ],
   declarations: [
     PessoasCadastroComponent,
     PessoasPesquisaComponent
   ],
-  exports: [
-    PessoasCadastroComponent,
-    PessoasPesquisaComponent
-  ]
+  exports: []
 })
 export class PessoasModule { }

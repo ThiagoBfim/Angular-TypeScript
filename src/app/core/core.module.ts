@@ -1,6 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -12,6 +13,8 @@ import { CategoriaService } from '../categoria/categoria.service';
 
 import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+
 
 @NgModule({
   imports: [
@@ -20,7 +23,7 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
     ConfirmDialogModule,
     RouterModule
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [NavbarComponent, ToastyModule, ConfirmDialogModule],
   providers: [
     ErrorHandlerService,
@@ -28,6 +31,7 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
     PessoaService,
     ConfirmationService,
     CategoriaService,
+    Title,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
