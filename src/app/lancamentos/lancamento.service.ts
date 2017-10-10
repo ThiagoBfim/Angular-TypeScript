@@ -1,6 +1,7 @@
+import { AuthHttp } from 'angular2-jwt';
 import { Lancamento } from './../core/model';
 import { Injectable } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
+import { Headers, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
@@ -17,15 +18,11 @@ export class LancamentoFiltro {
 export class LancamentoService {
 
   lancamentoUrl = 'http://localhost:8080/lancamentos';
-  constructor(private http: Http) { }
+  constructor(private authHttp: AuthHttp) { }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
 
     const params = new URLSearchParams();
-    const headers = new Headers();
-    // tslint:disable-next-line:max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDc3NzU1OTUsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxOWZiNzZjZS1iNGNhLTQ4YTktOGRmZi04ZjMwZDg1MTk3NDUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.D5uC2NrsNHaz8QyY8jMBA5oTQgENk-QaIdH0PQmj1lk');
-
     params.set('page', filtro.pagina.toString());
     params.set('size', filtro.itensPorPagina.toString());
 
@@ -41,7 +38,7 @@ export class LancamentoService {
         .format('YYYY-MM-DD'));
     }
 
-    return this.http.get(`${this.lancamentoUrl}?resumo`, { headers, search: params })
+    return this.authHttp.get(`${this.lancamentoUrl}?resumo`, {search: params })
       .toPromise()
       .then(response => {
         const responseJson = response.json();
@@ -59,33 +56,21 @@ export class LancamentoService {
   excluir(codigo: number): Promise<void> {
 
     const params = new URLSearchParams();
-    const headers = new Headers();
-    // tslint:disable-next-line:max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDc3NzU1OTUsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxOWZiNzZjZS1iNGNhLTQ4YTktOGRmZi04ZjMwZDg1MTk3NDUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.D5uC2NrsNHaz8QyY8jMBA5oTQgENk-QaIdH0PQmj1lk');
-
-    return this.http.delete(`${this.lancamentoUrl}/${codigo}`, { headers })
+    return this.authHttp.delete(`${this.lancamentoUrl}/${codigo}`)
       .toPromise().then(() => null);
   }
 
   salvar(lancamento: Lancamento): Promise<Lancamento> {
     const params = new URLSearchParams();
-    const headers = new Headers();
-    // tslint:disable-next-line:max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDc3NzU1OTUsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxOWZiNzZjZS1iNGNhLTQ4YTktOGRmZi04ZjMwZDg1MTk3NDUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.D5uC2NrsNHaz8QyY8jMBA5oTQgENk-QaIdH0PQmj1lk');
-    headers.append('Content-Type', 'application/json');
 
-    return this.http.post(`${this.lancamentoUrl}/`, JSON.stringify(lancamento), { headers })
+    return this.authHttp.post(`${this.lancamentoUrl}/`, JSON.stringify(lancamento))
       .toPromise().then((response => response.json()));
   }
 
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
     const params = new URLSearchParams();
-    const headers = new Headers();
-    // tslint:disable-next-line:max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDc3NzU1OTUsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxOWZiNzZjZS1iNGNhLTQ4YTktOGRmZi04ZjMwZDg1MTk3NDUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.D5uC2NrsNHaz8QyY8jMBA5oTQgENk-QaIdH0PQmj1lk');
-    headers.append('Content-Type', 'application/json');
 
-    return this.http.put(`${this.lancamentoUrl}/${lancamento.codigo}`, JSON.stringify(lancamento), { headers })
+    return this.authHttp.put(`${this.lancamentoUrl}/${lancamento.codigo}`, JSON.stringify(lancamento))
       .toPromise().then((response => {
         const lancamentoAtualizado = response.json();
         this.converterStringParaDatas([lancamentoAtualizado]);
@@ -96,11 +81,7 @@ export class LancamentoService {
   buscarPorCodigo(codigo: number): Promise<Lancamento> {
 
     const params = new URLSearchParams();
-    const headers = new Headers();
-    // tslint:disable-next-line:max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDc3NzU1OTUsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxOWZiNzZjZS1iNGNhLTQ4YTktOGRmZi04ZjMwZDg1MTk3NDUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.D5uC2NrsNHaz8QyY8jMBA5oTQgENk-QaIdH0PQmj1lk');
-
-    return this.http.get(`${this.lancamentoUrl}/${codigo}`, { headers })
+    return this.authHttp.get(`${this.lancamentoUrl}/${codigo}`)
       .toPromise().then((response => {
         const lancamentoAtualizado = response.json();
         this.converterStringParaDatas([lancamentoAtualizado]);
