@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,11 +10,11 @@ export class LoginFormComponent {
 
   usuario: string;
   senha: string;
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
 
   login() {
-
+    this.authService.login(this.usuario, this.senha);
   }
 
 }

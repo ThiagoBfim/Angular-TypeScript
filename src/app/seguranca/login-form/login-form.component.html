@@ -1,17 +1,15 @@
 <div class="container">
-  <form #f="ngForm" (ngSubmit)="login(f)">
+  <form #f="ngForm" (ngSubmit)="login()">
     <div class="ui-g- 12">
       <div class="ui-g-4">
       </div>
       <div class="ui-g-4">
         <h1>Login</h1>
         <div class="ui-g-12 ui-fluid">
-          <input type="text" pInputText name="usuario" [(ngModel)]="usuario"  required 
-          placeholder="usuário">
+          <input type="text" pInputText name="usuario" [(ngModel)]="usuario" required placeholder="usuário">
         </div>
         <div class="ui-g-12 ui-fluid">
-          <input type="text" pInputText name="senha" [(ngModel)]="senha" required
-          placeholder="senha">
+          <input type="password" pInputText name="senha" [(ngModel)]="senha" required placeholder="senha">
         </div>
         <div class="ui-g-12 ui-fluid">
           <button pButton type="submit" label="Login" [disabled]="f.invalid"></button>
