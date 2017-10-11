@@ -6,17 +6,16 @@
       </div>
     </div>
   </div>
-
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">
-      Usuario logado
+      {{auth.jwtPayload?.nome}}
     </li>
-    <li class="navbar-menu-item" routerLinkActive="ativo">
+    <li class="navbar-menu-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_LANCAMENTO')">
       <a routerLink="/lancamentos">
       Lançamentos
       </a>
     </li>
-    <li class="navbar-menu-item" routerLinkActive="ativo">
+    <li class="navbar-menu-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')">
         <a routerLink="/pessoas">
       Pessoas
       </a>

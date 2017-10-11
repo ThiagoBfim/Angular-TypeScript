@@ -16,6 +16,7 @@ import { JwtHelper } from 'angular2-jwt';
 import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     ConfirmDialogModule,
     RouterModule
   ],
-  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent, NaoAutorizadoComponent],
   exports: [NavbarComponent, ToastyModule, ConfirmDialogModule],
   providers: [
     ErrorHandlerService,

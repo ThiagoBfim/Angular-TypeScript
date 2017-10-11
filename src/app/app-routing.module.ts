@@ -5,11 +5,13 @@ import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pes
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { PessoasCadastroComponent } from './pessoas/pessoas-cadastro/pessoas-cadastro.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
+import { NaoAutorizadoComponent } from './core/nao-autorizado.component';
 
 
 const routes: Routes = [
     { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
     { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
+    { path: 'nao-autorizado', component: NaoAutorizadoComponent },
     { path: '**', redirectTo: 'pagina-nao-encontrada', pathMatch: 'full' }
 ];
 
