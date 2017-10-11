@@ -55,6 +55,11 @@ export class AuthService {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
   temQualquerPermissao(roles) {
     for (const role of roles) {
       if (this.temPermissao(role)) {

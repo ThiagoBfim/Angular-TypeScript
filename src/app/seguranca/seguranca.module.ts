@@ -11,6 +11,7 @@ import { PrimeFacesModuleModule } from '../prime-faces-module/prime-faces-module
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
+import { LogoutService } from './logout.service';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -37,7 +38,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     useFactory: authHttpServiceFactory,
     deps: [AuthService, Http, RequestOptions]
   },
-  AuthGuard
+  AuthGuard,
+  LogoutService
   ]
 })
 export class SegurancaModule { }
