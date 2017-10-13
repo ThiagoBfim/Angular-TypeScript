@@ -5,6 +5,7 @@ import { Headers, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
+import { environment } from '../../environments/environment';
 
 export class LancamentoFiltro {
   descricao: string;
@@ -17,8 +18,10 @@ export class LancamentoFiltro {
 @Injectable()
 export class LancamentoService {
 
-  lancamentoUrl = 'http://localhost:8080/lancamentos';
-  constructor(private authHttp: AuthHttp) { }
+  lancamentoUrl: string;
+  constructor(private authHttp: AuthHttp) {
+    this.lancamentoUrl = `${environment.apiUrl}/lancamentos`;
+  }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
 
@@ -38,7 +41,7 @@ export class LancamentoService {
         .format('YYYY-MM-DD'));
     }
 
-    return this.authHttp.get(`${this.lancamentoUrl}?resumo`, {search: params })
+    return this.authHttp.get(`${this.lancamentoUrl}?resumo`, { search: params })
       .toPromise()
       .then(response => {
         const responseJson = response.json();

@@ -16,6 +16,7 @@ export class Endereco {
 export class Pessoa {
     codigo: number;
     ativo = true;
+    nome: string;
     endereco = new Endereco();
 }
 
@@ -26,7 +27,7 @@ export class Lancamento {
     dataVencimento: Date;
     dataPagamento: Date;
     valor: number;
-    observao: string;
+    observacao: string;
     pessoa = new Pessoa();
     categoria = new Categoria();
 }
